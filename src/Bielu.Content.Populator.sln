@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielu.Content.Populator.Core", "Bielu.Content.Populator.Core\Bielu.Content.Populator.Core.csproj", "{0995EA28-0B55-447C-AE02-34D423F4405D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielu.Content.Populator.Umbraco", "Bielu.Content.Populator.Umbraco\Bielu.Content.Populator.Umbraco.csproj", "{443C25CE-18CB-4F1B-B2CB-5CBCDE28C261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielu.Content.Populator.Models", "Bielu.Content.Populator.Models\Bielu.Content.Populator.Models.csproj", "{BBB54015-3ADE-473A-B166-DF4DBDA25545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielu.Content.Populator.TestProject.Umbraco", "Bielu.Content.Populator.TestProject.Umbraco\Bielu.Content.Populator.TestProject.Umbraco.csproj", "{EA4EE51A-9D60-46C0-8B16-E25AEFF9AD9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielu.Content.Populator.Integration.Example", "Bielu.Content.Populator.Integration.Example\Bielu.Content.Populator.Integration.Example.csproj", "{93402BCA-52A9-48E3-AAC9-8090F043155E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0995EA28-0B55-447C-AE02-34D423F4405D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0995EA28-0B55-447C-AE02-34D423F4405D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0995EA28-0B55-447C-AE02-34D423F4405D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0995EA28-0B55-447C-AE02-34D423F4405D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443C25CE-18CB-4F1B-B2CB-5CBCDE28C261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443C25CE-18CB-4F1B-B2CB-5CBCDE28C261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443C25CE-18CB-4F1B-B2CB-5CBCDE28C261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443C25CE-18CB-4F1B-B2CB-5CBCDE28C261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB54015-3ADE-473A-B166-DF4DBDA25545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB54015-3ADE-473A-B166-DF4DBDA25545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB54015-3ADE-473A-B166-DF4DBDA25545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB54015-3ADE-473A-B166-DF4DBDA25545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA4EE51A-9D60-46C0-8B16-E25AEFF9AD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4EE51A-9D60-46C0-8B16-E25AEFF9AD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4EE51A-9D60-46C0-8B16-E25AEFF9AD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4EE51A-9D60-46C0-8B16-E25AEFF9AD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93402BCA-52A9-48E3-AAC9-8090F043155E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93402BCA-52A9-48E3-AAC9-8090F043155E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93402BCA-52A9-48E3-AAC9-8090F043155E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93402BCA-52A9-48E3-AAC9-8090F043155E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

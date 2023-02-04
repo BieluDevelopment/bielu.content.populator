@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Bielu.Content.Populator.Core\Bielu.Content.Populator.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Content\content-1.0.0.json" />
+      <EmbeddedResource Include="Content\content-1.0.0.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Mvc.Core" />
+    </ItemGroup>
+
+</Project>
