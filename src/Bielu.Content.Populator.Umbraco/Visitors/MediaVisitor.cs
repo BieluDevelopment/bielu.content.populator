@@ -1,4 +1,5 @@
-﻿using Umbraco.Cms.Core.IO;
+﻿using Bielu.Content.Populator.Models;
+using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
 
@@ -23,6 +24,7 @@ public class MediaVisitor : IMediaVisitor
             contentDef.Properties.Add(property.Alias, property.GetValue());
         }
 
+        AddDepedency(contentDef, DefinitionType.ContentType, content.ContentType.Key);
         if (content.Properties.Any(x => x.Alias == "umbracoFile"))
         {
             var media = _mediaService.GetById(content.Id);
@@ -36,6 +38,22 @@ public class MediaVisitor : IMediaVisitor
              }
             }
   
+        }
+       
+    }
+    //todo: move to helper as repeating bettween files
+    private void AddDepedency(Models.Media contentDef, DefinitionType type, Guid referenceKey)
+    {
+        if (contentDef.DependsOn.ContainsKey(type))
+        {
+            contentDef.DependsOn[type].Add(referenceKey);
+        }
+        else
+        {
+            contentDef.DependsOn.Add(type, new List<Guid>()
+            {
+                referenceKey
+            });
         }
     }
     public static byte[] ReadAllBytes(Stream instream)

@@ -1,6 +1,8 @@
 ﻿namespace Bielu.Content.Populator.Models;
 
-public class MediaType
+public class MediaType : BaseType
 {
-    
+    public MediaType(Guid key) : base(key)
+    {
+    }
 }

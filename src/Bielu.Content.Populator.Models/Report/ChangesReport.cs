@@ -4,6 +4,7 @@ public class ChangesReport
 {
     public IList<Changes> DataTypes = new List<Changes>();
     public IList<Changes> ContentTypes { get; set; }
+    public IList<Changes> Content { get; set; }
 }
 
 public class Changes
@@ -15,4 +16,6 @@ public class Changes
     public string Source { get; set; }
     public bool FirstOccurance { get; set; }
     public bool Created { get; set; }
+    public bool Failed { get; set; }
+    public Exception Exception { get; set; }
 }

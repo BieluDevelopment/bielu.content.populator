@@ -53,6 +53,12 @@ namespace Bielu.Content.Populator.TestProject.Umbraco
             services.AddScoped<IPropertyVisitor, PropertyVisitor>();
             services.AddScoped<IDataTypeVisitor, DataTypeVisitor>();
             services.AddScoped<IExportService, UmbracoExportService>();
+            
+            //services below has to be singleton as Umbraco made components singletons...
+            services.AddSingleton<IImportService, ImportService>();
+            services.AddSingleton<IContentImportService, ContentImportService>();
+            services.AddSingleton<IDataTypeImportService,DataTypeImportService>();
+            services.AddSingleton<IContentTypeImportService, ContentTypeImportService>();
         }
 
         /// <summary>

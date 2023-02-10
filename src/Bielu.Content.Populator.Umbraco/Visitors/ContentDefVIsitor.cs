@@ -107,28 +107,41 @@ public class ContentDefVIsitor : IContentDefinitionVisitor
     public void VisitMediaType(ContentDefitinion contentDef, Guid dependenciesValue)
     {
         var contentType = _mediaTypeService.Get(dependenciesValue);
-        var contentTypeModel = new ContentType(dependenciesValue);
+        var contentTypeModel = new MediaType(dependenciesValue)
+        {
+            Path = contentType.Path.Split(",").Skip(1).Select(x=>_contentTypeService.Get(x)!.Key).ToArray()
+        };
+        contentTypeModel.Parent = contentTypeModel.Path.Last();
+        contentTypeModel.DependsOn.Add(DefinitionType.ContentType, contentTypeModel.Path.ToList());
+        contentDef.MediaTypes.Add(contentTypeModel);
      //   _mediaTypeVisitor.Visit(contentDef,contentTypeModel, contentType );
     }
 
     public void VisitContentType(ContentDefitinion contentDef, Guid dependenciesValue)
     {
         var contentType = _contentTypeService.Get(dependenciesValue);
-        var contentTypeModel = new ContentType(dependenciesValue);
+        var contentTypeModel = new ContentType(dependenciesValue)
+        {
+            Path = contentType.Path.Split(",").Skip(1).Select(x=>_contentTypeService.Get(int.Parse(x))?.Key ?? _contentTypeService.GetContainer(int.Parse(x)).Key).ToArray()
+        };
+        contentTypeModel.Name = contentType.Name;
+        contentTypeModel.Parent = contentTypeModel.Path.Last();
+        contentTypeModel.DependsOn.Add(DefinitionType.ContentType, contentTypeModel.Path.ToList());
         contentDef.ContentTypes.Add(contentTypeModel);
         _contentTypeVisitor.Visit(contentDef,contentTypeModel, contentType );
     }
 
-    public void VisitMedia(IUmbracoContext umbracoContextReference, ContentDefitinion contentDef,
+    public void VisitMedia(IUmbracoContext context, ContentDefitinion contentDef,
         Guid mediaKey)
     {
-        var media = umbracoContextReference.Media?.GetById(mediaKey);
+        var media = context.Media?.GetById(mediaKey);
 
         if (media != null)
         {
             var contentModel = new Models.Media(media.Key);
             contentDef.Media.Add(contentModel);
             _mediaVisitor.Visit(contentModel, media);
+            VisitDepedencies(context, contentDef, contentModel.DependsOn);
         }
     }
 

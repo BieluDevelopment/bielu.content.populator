@@ -6,6 +6,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
 using ContentType = Bielu.Content.Populator.Models.ContentType;
 using DataType = Bielu.Content.Populator.Models.DataType;
+using MediaType = Bielu.Content.Populator.Models.MediaType;
 using PropertyType = Bielu.Content.Populator.Models.PropertyType;
 
 namespace Bielu.Content.Populator.Umbraco.Visitors;
@@ -35,7 +36,7 @@ public class PropertyVisitor : IPropertyVisitor
 
         }
         contentDef.Properties.Add(property.Alias, value);
-
+        Visit(value);
         var regex = @"[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?";
         var matches = Regex.Matches(json, regex);
         AddDepedency(contentDef,DefinitionType.DataType, datatype.Key);
@@ -54,6 +55,11 @@ public class PropertyVisitor : IPropertyVisitor
 
     }
 
+    public void Visit(object propertyValue)
+    {
+        
+    }
+
     public void Visit(ContentDefitinion contentDefitinion, ContentType contentDef, IPropertyType property)
     {
         var datatype = _dataTypeService.GetDataType(property.DataTypeId);
@@ -69,7 +75,35 @@ public class PropertyVisitor : IPropertyVisitor
         _dataTypeVisitor.Visit(contentDefitinion,propertyType, datatype );
     }
 
+    public void Visit(ContentDefitinion contentDefitinion, MediaType contentDef, IPropertyType property)
+    {
+        var datatype = _dataTypeService.GetDataType(property.DataTypeId);
+
+        var propertyType = new DataType(datatype.Key);
+        var propertyModel = new PropertyType();
+        contentDefitinion.DataTypes.Add(propertyType);
+        contentDef.Properties.Add(propertyModel);
+        AddDepedency(contentDef,DefinitionType.DataType, datatype.Key);
+        propertyModel.Alias = property.Alias;
+        propertyModel.Name = property.Name;
+        propertyModel.Datatype = datatype.Key;
+        _dataTypeVisitor.Visit(contentDefitinion,propertyType, datatype );
+    }
+
     private void AddDepedency(Models.Content contentDef, DefinitionType type, Guid referenceKey)
+    {
+        if (contentDef.DependsOn.ContainsKey(type)){
+            contentDef.DependsOn[type].Add(referenceKey);
+        }
+        else
+        {
+            contentDef.DependsOn.Add(type,new List<Guid>()
+            {
+                referenceKey
+            });
+        }
+    }
+    private void AddDepedency(Models.MediaType contentDef, DefinitionType type, Guid referenceKey)
     {
         if (contentDef.DependsOn.ContainsKey(type)){
             contentDef.DependsOn[type].Add(referenceKey);

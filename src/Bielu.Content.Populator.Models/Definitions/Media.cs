@@ -8,11 +8,11 @@ public class Media
     {
         Key = key;
         Properties = new Dictionary<string, object>();
-        DependsOn = new Dictionary<DefinitionType, Guid>();
+        DependsOn = new Dictionary<DefinitionType,List<Guid>>();
     }
 
     public Guid ContentType { get; set; }
-    public Dictionary<DefinitionType,Guid> DependsOn { get; set; }
+    public Dictionary<DefinitionType,List<Guid>> DependsOn { get; set; }
     public IDictionary<string,object> Properties { get; set; }
     public byte[] File { get; set; }
 }
