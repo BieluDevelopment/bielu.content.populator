@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <StaticWebAssetBasePath>App_Plugins</StaticWebAssetBasePath>
+        <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Bielu.Content.Populator.Umbraco.Core\Bielu.Content.Populator.Umbraco.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.*.*" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.*.*" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="PreCompiledBackofficeFiles\Js" />
+      <Folder Include="PreCompiledBackofficeFiles\Sass" />
+    </ItemGroup>
+
+</Project>
