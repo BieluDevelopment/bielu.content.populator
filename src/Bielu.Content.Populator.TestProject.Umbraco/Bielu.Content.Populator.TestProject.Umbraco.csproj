@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bielu.Content.Populator.Integration.Example\Bielu.Content.Populator.Integration.Example.csproj" />
+    <ProjectReference Include="..\Bielu.Content.Populator.Umbraco.Assets\Bielu.Content.Populator.Umbraco.Assets.csproj" />
+    <ProjectReference Include="..\Bielu.Content.Populator.Umbraco.Core\Bielu.Content.Populator.Umbraco.Core.csproj" />
     <ProjectReference Include="..\Bielu.Content.Populator.Umbraco\Bielu.Content.Populator.Umbraco.csproj" />
   </ItemGroup>
 

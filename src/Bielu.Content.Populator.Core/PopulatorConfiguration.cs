@@ -30,7 +30,7 @@ public class PopulatorConfiguration
         EmbedAssemblies = new Dictionary<Assembly, List<string>>();
     }
 
-    public IList<ContentDefitinion> GetFromEmbedAssemblies()
+    public IList<ContentDefitinion> GetFromEmbedAssemblies(StateReport stateReport)
     {
         IList<ContentDefitinion> configurations = new List<ContentDefitinion?>();
         foreach (var embedAssembly in this.EmbedAssemblies)
@@ -38,8 +38,26 @@ public class PopulatorConfiguration
            
 
             foreach (var file in embedAssembly.Value)
-            {          
-                using (Stream stream = embedAssembly.Key.GetManifestResourceStream($"{embedAssembly.Key.GetName().Name}.{file}")){
+            {
+                var assembly = embedAssembly.Key.GetName();
+                var assemblyName = assembly.Name;
+                var assemblyVersion = assembly.Version.ToString();
+                if (stateReport.CurrentAssemblies.ContainsKey(assemblyName))
+                {
+                    if (stateReport.CurrentAssemblies[assemblyName] ==assemblyVersion)
+                    {
+                        continue;
+                        
+                    }
+
+                    stateReport.CurrentAssemblies[assemblyName] = assemblyVersion;
+                }
+                else
+                {
+                  
+                    stateReport.CurrentAssemblies.Add(assemblyName,assemblyVersion);  
+                }
+                using (Stream stream = embedAssembly.Key.GetManifestResourceStream($"{assemblyName}.{file}")){
 
                     using (StreamReader reader = new StreamReader(stream))
                     {
@@ -51,6 +69,7 @@ public class PopulatorConfiguration
 
                         var configuration = JsonConvert.DeserializeObject<ContentDefitinion>(result);
                         configuration.AssemblySource = embedAssembly.Key.GetName().Name;
+                        configuration.AssemblyVersion = embedAssembly.Key.GetName().Version.ToString();
                         configurations.Add(configuration);
                     }
                 }
@@ -60,10 +79,10 @@ public class PopulatorConfiguration
 
         return configurations;
     }
-    public IList<ContentDefitinion> GetAllConfigurations()
+    public IList<ContentDefitinion> GetAllConfigurations(StateReport stateReport)
     {
-        List<ContentDefitinion> configurations = new List<ContentDefitinion?>();
-        configurations.AddRange(GetFromEmbedAssemblies());
+        List<ContentDefitinion> configurations = new List<ContentDefitinion>();
+        configurations.AddRange(GetFromEmbedAssemblies(stateReport));
         return configurations;
 
     }

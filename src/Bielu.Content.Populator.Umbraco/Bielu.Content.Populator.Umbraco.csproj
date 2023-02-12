@@ -7,15 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Umbraco.Cms.Core" Version="10.4.0" />
-      <PackageReference Include="Umbraco.Cms.Infrastructure" Version="10.4.0" />
-      <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.4.0" />
-      <PackageReference Include="Umbraco.Cms.Web.Common" Version="10.4.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Bielu.Content.Populator.Core\Bielu.Content.Populator.Core.csproj" />
-      <ProjectReference Include="..\Bielu.Content.Populator.Models\Bielu.Content.Populator.Models.csproj" />
+      <ProjectReference Include="..\Bielu.Content.Populator.Umbraco.Assets\Bielu.Content.Populator.Umbraco.Assets.csproj" />
+      <ProjectReference Include="..\Bielu.Content.Populator.Umbraco.Core\Bielu.Content.Populator.Umbraco.Core.csproj" />
     </ItemGroup>
 
 </Project>

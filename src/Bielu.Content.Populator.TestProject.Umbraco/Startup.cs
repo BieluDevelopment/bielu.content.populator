@@ -73,6 +73,7 @@ namespace Bielu.Content.Populator.TestProject.Umbraco
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseUmbraco()
                 .WithMiddleware(u =>
                 {

@@ -14,7 +14,9 @@ public class ContentDefitinion
         CompatibleCmses = new List<string>();
     }
     [JsonIgnore]
-    public string AssemblySource { get; set; }
+    public string AssemblySource { get; set; }   
+    [JsonIgnore]
+    public string AssemblyVersion { get; set; }
     public string TargetVersion { get; set; }
     public IList<string> CompatibleCmses { get; set; }
     public IList<DataType> DataTypes { get; set; }
